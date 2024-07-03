@@ -60,6 +60,7 @@ const age2 = calcAge2(1991);
 console.log(age1, age2);
 */
 
+/*
 ////////////////////////////////////////////////
 
 // Arrow function
@@ -85,3 +86,103 @@ const yearsUntilRetirement = (birthYear, firstName) => {
 
 console.log(yearsUntilRetirement(1991, "Bhavya"));
 console.log(yearsUntilRetirement(1960, "Bob"));
+*/
+/////////////////////////////////////////
+/*
+const friend1 = "Micheal";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = ["Micheal", "Steven", "Peter"];
+console.log(friends);
+
+const years = new Array(1991, 1984, 2008, 2024);
+console.log(years);
+
+console.log(friends[0]);
+console.log(friends[2]);
+console.log(friends[3]);
+
+console.log(friends.length);
+console.log(friends[friends.length - 1]);
+
+friends[2] = "Jay";
+console.log(friends);
+// friends = ['bob','alice'];
+
+const firstName = "Bhavya";
+const Bhavya = [firstName, "Rohilla", 2024 - 2001, "teacher", friends];
+console.log(Bhavya);
+
+// Exercise
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
+};
+
+const year = [1990, 1967, 2002, 2010, 2018];
+
+// console.log(calcAge(year));
+
+const age1 = calcAge(years[0]);
+const age2 = calcAge(years[1]);
+const age3 = calcAge(years[years.length - 1]);
+
+console.log(age1, age2, age3);
+
+const ages = [
+  calcAge(years[0]),
+  calcAge(years[1]),
+  calcAge(years[years.length - 1]),
+];
+console.log(ages);
+*/
+
+//Add elements
+const friends = ["Micheal", "Steven", "Peter"];
+const newLength = friends.push("Jay");
+console.log(friends);
+console.log(newLength);
+
+friends.unshift("John");
+console.log(friends);
+
+//remove elements
+// friends.pop();
+const popped = friends.pop(); // last
+console.log(popped);
+console.log(friends);
+
+console.log(friends.shift()); // first
+console.log(friends);
+
+console.log(friends.indexOf("Steven"));
+console.log(friends.indexOf("Bob"));
+
+friends.push(23);
+console.log(friends.includes("Steven"));
+console.log(friends.includes("Bob"));
+console.log(friends.includes(23));
+
+if (friends.includes("Steven")) {
+  console.log("You have a friend called steven");
+}
+
+const bhavyaArray = [
+  "Bhavya",
+  "Rohilla",
+  2037 - 1991,
+  "teacher",
+  ["Micheal", "Peter", "Steven"],
+];
+
+console.log(bhavyaArray);
+
+const bhavya = {
+  firstName: "Bhavya",
+  lastName: "Rohilla",
+  age: 2024 - 2001,
+  job: "Teacher",
+  friends: ["Micheal", "peter", "Steven"],
+};
+
+console.log(bhavya);
