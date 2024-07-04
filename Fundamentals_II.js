@@ -136,6 +136,8 @@ const ages = [
 ];
 console.log(ages);
 */
+//////////////////////////////////////////////////////////////////////
+/*
 
 //Add elements
 const friends = ["Micheal", "Steven", "Peter"];
@@ -184,5 +186,145 @@ const bhavya = {
   job: "Teacher",
   friends: ["Micheal", "peter", "Steven"],
 };
-
 console.log(bhavya);
+
+console.log(bhavya.lastName);
+console.log(bhavya["lastName"]);
+
+const nameKey = "Name";
+console.log(bhavya["first" + nameKey]);
+console.log(bhavya["last" + nameKey]);
+// console.log(bhavya.'last' + nameKey);
+
+const intrestedIn = prompt(
+  "what do you want to know about bhavya? Choose between firstName, lastName, age, job, and friends"
+);
+
+if (bhavya[intrestedIn]) {
+  console.log(bhavya[intrestedIn]);
+} else {
+  console.log(
+    "Wrong request! Choose between firstName, lastName, age, job, and friends"
+  );
+}
+
+bhavya.location = "Sirsa";
+bhavya["linkedin"] = "@bhavyarohilla";
+console.log(bhavya);
+
+// Challenge
+// "Bhavya has 3 friends, and his best friend is called micheal"
+
+console.log(
+  `${bhavya.firstName} has ${bhavya.friends.length} friends, and his best friend is called ${bhavya.friends[0]}`
+);
+*/
+
+//////////////////////////////////////////////////////////////
+
+/*
+
+const bhavya = {
+  firstName: "Bhavya",
+  lastName: "Rohilla",
+  birthYear: 2001,
+  job: "Teacher",
+  friends: ["Micheal", "peter", "Steven"],
+  hasDriversLicense: false,
+
+  // calcAge: function (birthYear) {
+  //   return 2037 - birthYear;
+  // },
+
+  calcAge: function () {
+    // console.log(this);
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-years old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+  },
+};
+
+console.log(bhavya.getSummary());
+
+// console.log(bhavya.age);
+// Challenge
+//"Bhavya is a 22-year old teacher, and he has a driver's license"
+
+// console.log(bhavya.calcAge(1991));
+// console.log(bhavya["calcAge"](1992));
+
+console.log(bhavya.calcAge());
+
+console.log(bhavya.age);
+console.log(bhavya.age);
+console.log(bhavya.age);
+
+*/
+
+// console.log("Lifting weight repetition 1 🏋️");
+// console.log("Lifting weight repetition 2 🏋️");
+// console.log("Lifting weight repetition 3 🏋️");
+// console.log("Lifting weight repetition 4 🏋️");
+// console.log("Lifting weight repetition 5 🏋️");
+// console.log("Lifting weight repetition 6 🏋️");
+// console.log("Lifting weight repetition 7 🏋️");
+// console.log("Lifting weight repetition 8 🏋️");
+// console.log("Lifting weight repetition 9 🏋️");
+// console.log("Lifting weight repetition 10 🏋️");
+
+// for loop keeps running while consition is true.
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weight repetition ${rep} 🏋️`);
+}
+
+const bhavyaArray = [
+  "Bhavya",
+  "Rohilla",
+  2037 - 1991,
+  "teacher",
+  ["Micheal", "Peter", "Steven"],
+  true,
+];
+
+const types = [];
+
+for (let i = 0; i < bhavyaArray.length; i++) {
+  // Reading from bhavya array
+  console.log(bhavyaArray[i], typeof bhavyaArray[i]);
+
+  // Filling types array
+  // types[i] = typeof bhavyaArray[i];
+  types.push(typeof bhavyaArray[i]);
+}
+
+console.log(types);
+
+const years = [1991, 2001, 2002, 2003, 2004];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+
+console.log(ages);
+
+// continue and break
+
+console.log("--- ONLY STRINGS ---");
+for (let i = 0; i < bhavyaArray.length; i++) {
+  if (typeof bhavyaArray[i] !== "string") continue;
+  console.log(i);
+  console.log(bhavyaArray[i], typeof bhavyaArray[i]);
+}
+
+console.log("--- BREAK WITH NUMBER ---");
+for (let i = 0; i < bhavyaArray.length; i++) {
+  if (typeof bhavyaArray[i] === "number") break;
+
+  console.log(bhavyaArray[i], typeof bhavyaArray[i]);
+}
