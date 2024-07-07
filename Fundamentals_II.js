@@ -266,6 +266,8 @@ console.log(bhavya.age);
 
 */
 
+///////////////////////////////////////////////////////////////////////////////
+/*
 // console.log("Lifting weight repetition 1 🏋️");
 // console.log("Lifting weight repetition 2 🏋️");
 // console.log("Lifting weight repetition 3 🏋️");
@@ -327,4 +329,41 @@ for (let i = 0; i < bhavyaArray.length; i++) {
   if (typeof bhavyaArray[i] === "number") break;
 
   console.log(bhavyaArray[i], typeof bhavyaArray[i]);
+}
+*/
+
+const bhavya = [
+  "bhavya",
+  "Rohilla",
+  2024 - 2001,
+  "teacher",
+  ["Micheal", "Peter", "Steven"],
+  true,
+];
+
+for (let i = bhavya.length - 1; i >= 0; i--) {
+  console.log(i, bhavya[i]);
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`-------- Starting exercise ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} 🏋️`);
+  }
+}
+
+let rep = 1;
+while (rep <= 10) {
+  console.log(`WHILE: Lifting weight repetition ${rep}🏋️`);
+  rep++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+console.log(dice);
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log("Loop is about to end....");
 }
