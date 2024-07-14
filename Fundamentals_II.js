@@ -341,6 +341,8 @@ const bhavya = [
   true,
 ];
 
+console.log(bhavya);
+
 for (let i = bhavya.length - 1; i >= 0; i--) {
   console.log(i, bhavya[i]);
 }
