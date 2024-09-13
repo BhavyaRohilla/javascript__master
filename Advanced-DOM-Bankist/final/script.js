@@ -139,27 +139,27 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 // Sticky navigation: Intersection Observer API
 
 // const obsCallback = function (entries, observer) {
-//   entries.forEach(entry => {
+//   entries.forEach(function (entry) {
 //     console.log(entry);
 //   });
 // };
 
 // const obsOptions = {
 //   root: null,
-//   threhold: [0, 0.2],
+//   threshold: [0, 0.2],
 // };
 
 // const observer = new IntersectionObserver(obsCallback, obsOptions);
+
 // observer.observe(section1);
 
 const header = document.querySelector('.header');
-const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
+const navheight = nav.getBoundingClientRect().height;
+// console.log(navheight);
 
 const stickyNav = function (entries) {
   const [entry] = entries;
-  console.log(entry);
-
+  // console.log(entry);
   if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 };
@@ -167,17 +167,31 @@ const stickyNav = function (entries) {
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
-  rootMargin: `-${navHeight}px`,
+  rootMargin: `-${navheight}px`,
 });
-
 headerObserver.observe(header);
 
-// Reveal Section
+// Reveal sections
+const allSections = document.querySelectorAll('.section');
 
-const revealSection = function (entries, observer) {};
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
 
-const sectionObserver = new IntersectionObserver();
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
 
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
 
