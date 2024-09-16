@@ -195,7 +195,7 @@ allSections.forEach(function (section) {
 
 // Lazy Loading images
 const imgTargets = document.querySelectorAll('img[data-src]');
-console.log(imgTargets);
+// console.log(imgTargets);
 
 const loadImg = function (entries, observer) {
   const [entry] = entries;
@@ -289,7 +289,7 @@ const slider = function () {
   btnLeft.addEventListener('click', prevSlide);
 
   document.addEventListener('keydown', function (e) {
-    console.log(e);
+    // console.log(e);
     if (e.key === 'ArrowRight') nextSlide();
     e.key === 'ArrowLeft' && prevSlide();
   });
@@ -475,3 +475,9 @@ console.log(h1.nextSibling);
 
 console.log(h1.parentElement.children);
 */
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.returnValue = 'Are you sure you want to leave?';
+});
