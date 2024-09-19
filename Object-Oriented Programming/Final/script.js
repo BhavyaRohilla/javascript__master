@@ -53,3 +53,88 @@ console.log(bhavya.__proto__);
 // Object.prototype. (top of the prototype chain)
 console.log(bhavya.__proto__.__proto__);
 console.log(bhavya.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [0, 1, 1, 2, 3, 45, 5, 1, 2, 3, 4, 5];
+console.log(arr.__proto__ === Array.prototype);
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1);
+
+// class expression
+// const Personcl = class {}
+
+// class declaration
+class Personcl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Method will be added to .prototype property
+  calcAge() {
+    console.log(2024 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.firstName}`);
+  }
+
+  get age() {
+    return 2024 - this.birthYear;
+  }
+
+  //et a property that slready exist
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+const jessica = new Personcl('Jessica Davis', 2003);
+console.log(jessica);
+jessica.calcAge();
+console.log(jessica.age);
+
+const walter = new Personcl('Walter white', 1965);
+
+console.log(jessica.__proto__ === Personcl.prototype);
+
+// Personcl.prototype.greet = function () {
+//   console.log(`Hey ${this.firstName}`);
+// };
+jessica.greet();
+
+// 1. Class are NOT hoisted
+// 2. class are first-class citizen
+// 3. Classes are executed in strict mode
+
+const account = {
+  owner: 'Bhavya',
+  movements: [200, 8500, 600, 7000],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+account.latest = 50;
+console.log(account.movements);
