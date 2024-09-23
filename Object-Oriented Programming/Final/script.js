@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 const Person = function (firstName, birthYear) {
   //   console.log(this);
   // Instance properties
@@ -24,6 +25,14 @@ const jack = new Person('Jack', 1975);
 console.log(matilda, jack);
 
 console.log(bhavya instanceof Person);
+
+Person.hey = function () {
+  console.log('Hey There 👋');
+  console.log(this);
+};
+
+Person.hey();
+// jack.hey();
 
 // Prototypes
 
@@ -79,6 +88,7 @@ class Personcl {
     this.birthYear = birthYear;
   }
 
+  // Instance Method
   // Method will be added to .prototype property
   calcAge() {
     console.log(2024 - this.birthYear);
@@ -102,12 +112,20 @@ class Personcl {
   get fullName() {
     return this._fullName;
   }
+
+  //Static method
+  static hey() {
+    console.log('Hey there 👋');
+    console.log(this);
+  }
 }
 
 const jessica = new Personcl('Jessica Davis', 2003);
 console.log(jessica);
 jessica.calcAge();
 console.log(jessica.age);
+
+Personcl.hey();
 
 const walter = new Personcl('Walter white', 1965);
 
@@ -138,3 +156,57 @@ const account = {
 console.log(account.latest);
 account.latest = 50;
 console.log(account.movements);
+
+const PersonProto = {
+  calcAge() {
+    console.log(2024 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+
+steven.name = 'Steven';
+steven.birthYear = 1991;
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init('Sarah', 1989);
+sarah.calcAge();
+*/
+
+// Inheritance Between "Classes" : Constructor Function
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2024 - this.birthYear);
+};
+
+// const Students = function (firstName, birthYear, course) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+//   this.course = course;
+// };
+
+const Students = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+Students.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study at ${this.course}`);
+};
+
+const mike = new Students('Mike', 2020, 'Computer Science');
+mike.introduce();
