@@ -305,45 +305,79 @@ const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 */
 
+// 1) Public fields
+// 2) Private fields
+// 3) Public Methods
+// 4) Private Methods
+// (there is also the static version)
 class Account {
+  // 1) Public Fields (instances)
+  locale = navigator.language;
+
+  // 2) Private fields
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin, movements) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
-    this.locale = navigator.language;
+    // Protected property
+    this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${owner}`);
   }
 
+  // 3) Public Methods (instances)
   // Public Interface
+  getMovements() {
+    return this.#movements;
+  }
+
   deposit(val) {
-    this.movements.push(val);
+    this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
-  }
-
-  approveLoan(val) {
-    return true;
+    return this;
   }
 
   requestLoan(val) {
-    if (this.approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan Approved`);
+      return this;
     }
+  }
+
+  static helper() {
+    console.log('Helper');
+  }
+
+  // 4) Private Methods (instances)
+  #approveLoan(val) {
+    return true;
   }
 }
 
 const acc1 = new Account('Bhavya', 'Rs.', 1111, []);
-// acc1.movements.push(250);
-// acc1.movements.push(-150);
+// acc1._movements.push(250);
+// acc1._movements.push(-150);
 
-acc1.deposit(250);
-acc1.withdraw(150);
-acc1.requestLoan(500);
-acc1.approveLoan(500);
+// acc1.deposit(250);
+// acc1.withdraw(150);
+// acc1.requestLoan(500);
+// acc1.approveLoan(500);
+// console.log(acc1.getMovements());
 console.log(acc1);
-console.log(acc1.pin);
+// console.log(acc1.pin);
+
+// console.log(acc1.#pin);
+Account.helper();
+
+// Chaining
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
