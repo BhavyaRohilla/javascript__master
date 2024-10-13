@@ -2,7 +2,7 @@
 
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
-
+/*
 const renderCountry = function (data, className = '') {
   const currency = Object.keys(data.currencies)[0];
   const lng = Object.keys(data.languages)[0];
@@ -33,8 +33,8 @@ const renderError = function (msg) {
 // request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
 // request.send();
 
-const request = fetch('https://restcountries.com/v3.1/name/india');
-console.log(request);
+// const request = fetch('https://restcountries.com/v3.1/name/india');
+// console.log(request);
 
 // const getCountryData = function (country) {
 //   fetch(`https://restcountries.com/v3.1/name/${country}`)
@@ -48,10 +48,56 @@ console.log(request);
 //     });
 // };
 
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+
+    return response.json();
+  });
+};
+
+// const getCountryData = function (country) {
+//   // Country 1
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(response => {
+//       console.log(response);
+
+//       if (!response.ok)
+//         throw new Error(`Country not found (${response.status})`);
+
+//       return response.json();
+//     })
+//     .then(data => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       console.log(neighbour);
+//       if (!neighbour) return;
+
+//       // Country 2
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+//     })
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`Country not found (${response.status})`);
+//       }
+//       return response.json(); // Make sure to return this promise
+//     })
+//     .then(data => {
+//       const [data2] = data;
+//       //   console.log(data2);
+//       renderCountry(data2, 'neighbour');
+//     })
+//     .catch(err =>
+//       renderError(`Something went wrong ${err.message}. Try again!.`)
+//     )
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+
 const getCountryData = function (country) {
   // Country 1
-  fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(response => response.json())
+  getJSON(`https://restcountries.com/v3.1/name/${country}`, `Country not found`)
     .then(data => {
       renderCountry(data[0]);
       const neighbour = data[0].borders[0];
@@ -59,9 +105,11 @@ const getCountryData = function (country) {
       if (!neighbour) return;
 
       // Country 2
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+      return getJSON(
+        `https://restcountries.com/v3.1/alpha/${neighbour}`,
+        `Country not found`
+      );
     })
-    .then(response => response.json())
     .then(data => {
       const [data2] = data;
       //   console.log(data2);
@@ -76,5 +124,64 @@ const getCountryData = function (country) {
 };
 
 btn.addEventListener('click', function () {
-  getCountryData('usa');
+  getCountryData('Australia');
 });
+*/
+
+/*
+console.log('Test Start');
+setTimeout(() => console.log('0 sec timer'), 0);
+Promise.resolve('Resolved promise 1').then(res => console.log(res));
+console.log('Test End');
+*/
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery draw is happening 🔮');
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You win 💸');
+    } else {
+      reject(new Error('You lost your money 💩'));
+    }
+  }, 2000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+// Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(2)
+  .then(() => {
+    console.log('1 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('2 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('3 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('4 second passed');
+    return wait(1);
+  });
+
+// setTimeout(() => {
+//   console.log('1 Second Passed.');
+//   setTimeout(() => {
+//     console.log('2 Second Passed.');
+//     setTimeout(() => {
+//       console.log('3 Second Passed.');
+//       setTimeout(() => {
+//         console.log('4 Second Passed.');
+//       }, 1000);
+//     }, 1000);
+//   }, 1000);
+// }, 4000);
